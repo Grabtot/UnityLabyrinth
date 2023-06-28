@@ -12,11 +12,11 @@ public class Coin : MonoBehaviour
         transform.rotation = Quaternion.Euler(rotation);
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<Player>().AddCoin();
+            other.GetComponent<Player>().AddCoin();
         }
         gameObject.SetActive(false);
     }

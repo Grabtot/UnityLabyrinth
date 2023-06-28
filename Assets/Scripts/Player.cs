@@ -4,14 +4,15 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour
 {
-    [SerializeField]
-    private float _speed = 5;
+    [SerializeField] private float _speed = 5;
+    [SerializeField] private CharacterController _characterController;
+    [SerializeField] protected Transform _cameraTransform;
+    [SerializeField] private Rigidbody _rigidbody;
+    [SerializeField] private float _cameraRotationSpeed = 100;
 
-    [SerializeField]
-    private Rigidbody _rigidbody;
     private int _coinsCount;
+    [HideInInspector] public UnityEvent<int> LevelFinished;
 
-    public UnityEvent<int> LevelFinished;
     public void AddCoin()
     {
         _coinsCount++;
@@ -20,16 +21,36 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        float verticalInput = Input.GetAxis("Vertical");
         float horizontalInput = Input.GetAxis("Horizontal");
-        float mouseY = Input.GetAxis("Mouse X");
+        float verticalInput = Input.GetAxis("Vertical");
 
-        float verticalSpeed = verticalInput * _speed;
-        float horizontalSpeed = horizontalInput * _speed;
+        Vector3 movement = GetCameraForward() * verticalInput + GetCameraRight() * horizontalInput;
+        movement.Normalize();
 
-        _rigidbody.velocity = new Vector3(verticalSpeed, 0, horizontalSpeed);
+        _characterController.SimpleMove(movement * _speed);
 
-        transform.Rotate(0, mouseY, 0);
+        if (Input.GetAxis("Mouse X") != 0)
+        {
+            float mouseX = Input.GetAxis("Mouse X") * _cameraRotationSpeed * Time.deltaTime;
+
+            transform.Rotate(0f, mouseX, 0f);
+        }
+    }
+
+    private Vector3 GetCameraForward()
+    {
+        Vector3 cameraForward = _cameraTransform.forward;
+        cameraForward.y = 0f;
+        cameraForward.Normalize();
+        return cameraForward;
+    }
+
+    private Vector3 GetCameraRight()
+    {
+        Vector3 cameraRight = _cameraTransform.right;
+        cameraRight.y = 0f;
+        cameraRight.Normalize();
+        return cameraRight;
     }
 
     private void OnTriggerEnter(Collider other)

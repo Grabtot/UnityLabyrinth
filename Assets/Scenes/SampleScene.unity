@@ -278,7 +278,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3256977380513765293, guid: 1cc3d900c7722cd4da9993c8095a8aa9, type: 3}
       propertyPath: _rotationSpeed
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8783382422724417617, guid: 1cc3d900c7722cd4da9993c8095a8aa9, type: 3}
       propertyPath: m_RootOrder
@@ -752,7 +752,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3256977380513765293, guid: 1cc3d900c7722cd4da9993c8095a8aa9, type: 3}
       propertyPath: _rotationSpeed
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8783382422724417617, guid: 1cc3d900c7722cd4da9993c8095a8aa9, type: 3}
       propertyPath: m_RootOrder
@@ -1027,7 +1027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3256977380513765293, guid: 1cc3d900c7722cd4da9993c8095a8aa9, type: 3}
       propertyPath: _rotationSpeed
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8783382422724417617, guid: 1cc3d900c7722cd4da9993c8095a8aa9, type: 3}
       propertyPath: m_RootOrder
@@ -1499,6 +1499,7 @@ GameObject:
   - component: {fileID: 1409683210}
   - component: {fileID: 1409683209}
   - component: {fileID: 1409683214}
+  - component: {fileID: 1409683215}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1518,8 +1519,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f858a97b9cb56b459cdb97222c1811c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 15
+  _speed: 20
+  _characterController: {fileID: 1409683215}
+  _cameraTransform: {fileID: 963194228}
   _rigidbody: {fileID: 1409683214}
+  _cameraRotationSpeed: 100
+  LevelFinished:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!136 &1409683210
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1636,6 +1643,32 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!143 &1409683215
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409683208}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1443728785
 GameObject:
   m_ObjectHideFlags: 0
