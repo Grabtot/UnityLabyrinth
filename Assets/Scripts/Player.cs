@@ -19,6 +19,15 @@ public class Player : MonoBehaviour
         Debug.Log($"Coin added. Coins count: {_coinsCount}");
     }
 
+    public void RemoveCoin()
+    {
+        if (_coinsCount > 0)
+        {
+            _coinsCount--;
+            Debug.Log($"Coin removed. Coins count: {_coinsCount}");
+        }
+    }
+
     private void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -60,4 +69,5 @@ public class Player : MonoBehaviour
             LevelFinished.Invoke(_coinsCount);
         }
     }
+
 }
