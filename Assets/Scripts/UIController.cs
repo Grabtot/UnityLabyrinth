@@ -5,14 +5,17 @@ public class UIController : MonoBehaviour
 {
     [SerializeField] private Player _player;
     [SerializeField] private TextMeshProUGUI _coinsCountText;
+    [SerializeField] private Canvas _ui;
 
     private void Start()
     {
-        _player.LevelFinished.AddListener(ShowFinishText);
+        _ui.gameObject.SetActive(false);
+        _player.LevelFinished.AddListener(OnLevelFinished);
     }
 
-    private void ShowFinishText(int coinsCount)
+    private void OnLevelFinished(int coinsCount)
     {
-        _coinsCountText.text = $"{coinsCount} coins ";
+        _ui.gameObject.SetActive(true);
+        _coinsCountText.SetText($"Coins: {coinsCount} ");
     }
 }
